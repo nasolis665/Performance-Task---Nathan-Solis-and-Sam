@@ -1,6 +1,8 @@
 from random import randint
-def roll(num):
-  if num == (4 or 6 or 8 or 10 or 12 or 20 or 100):
+
+def roll(num, dice):
+  if num == dice:
+    num=num.replace('d','')
     num = randint(1,num)
     print("You rolled a: " + num)
   else:
