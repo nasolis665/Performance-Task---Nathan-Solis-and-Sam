@@ -312,7 +312,7 @@ def store():
         store()
     elif option2== "4":
       os.system('clear')
-      if PlayerIG.gold <50:
+      if PlayerIG.gold < 50:
         print("You don't have enough gold")
         option=input(" ")
         store()
@@ -324,7 +324,7 @@ def store():
         store()
     elif option2== "5":
       os.system('clear')
-      if PlayerIG.gold <110:
+      if PlayerIG.gold < 110:
         print("You don't have enough gold")
         option=input(" ")
         store()
@@ -334,18 +334,18 @@ def store():
         PlayerIG.inventory+=["Diamond Armour"]
         option=input(" ")
         store()
-  elif option2==6:
-    os.system('clear')
-    if PlayerIG.gold<550:
-      print("You don't have enough gold")
-      option=input(" ")
-      store()
-    else:
-      print("You bought Excalibur")
-      PlayerIG.gold-=550
-      PlayerIG.inventory +=["Excalibur"]
-      option=input(" ")
-      store()
+    elif option2== "6":
+      os.system('clear')
+      if PlayerIG.gold < 550:
+        print("You don't have enough gold")
+        option=input(" ")
+        store()
+      else:
+        print("You bought Excalibur")
+        PlayerIG.gold-=550
+        PlayerIG.inventory+=["Excalibur"]
+        option=input(" ")
+        store()
   else:
     start1()
 
