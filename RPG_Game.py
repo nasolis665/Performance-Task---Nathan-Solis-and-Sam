@@ -50,7 +50,7 @@ class Skeleton:
     self.name = name
     self.maxhealth = 21
     self.health = self.maxhealth
-    self.attack = 7
+    self.attack = 8
     self.gold = 12
 
 
@@ -63,7 +63,7 @@ class Bandit:
     self.name = name
     self.maxhealth = 20
     self.health = self.maxhealth
-    self.attack = 9
+    self.attack = 10
     self.gold = 25
 
 
@@ -89,7 +89,7 @@ class Vampire:
     self.name = name
     self.maxhealth = 156
     self.health = self.maxhealth
-    self.attack = 23
+    self.attack = 24
     self.gold = 230
 
 
@@ -115,7 +115,7 @@ class Beholder:
     self.name = name
     self.maxhealth = 202
     self.health = self.maxhealth
-    self.attack = 25
+    self.attack = 26
     self.gold = 300
 
 
@@ -212,14 +212,19 @@ def prefight():
   enemynum = random.randint(1, 4)
   if enemynum == 1:
     enemy = GoblinIG
+    GoblinIG.health=17
   elif enemynum == 2:
     enemy = ZombieIG
+    GoblinIG.health=28
   elif enemynum == 3:
     enemy = SkeletonIG
+    SkeletonIG.health=21
   elif enemynum == 4:
     enemy = BanditIG
+    BanditIG.health=20
   elif enemynum == 5:
     enemy = MimicIG
+    MimicIG.health=65
   fight()
 
 
@@ -228,12 +233,16 @@ def prebfight():
   bossnum = random.randint(1, 5)
   if bossnum == 1:
     enemy = VampireIG
+    VampireIG.heath=156
   elif bossnum == 2:
     enemy = KrakenIG
+    KrakenIG.health=486
   elif bossnum == 3:
     enemy = BeholderIG
+    BeholderIG.health=202
   elif bossnum == 4:
     enemy = TarrasqueIG
+    TarrasqueIG.health=1000
   fight()
 
 
@@ -296,7 +305,9 @@ def drinkpot():
 
 def run():
   os.system('clear')
-  pass
+  print("You ran away")
+  option=input(" ")
+  start1()
 
 
 def die():
@@ -326,7 +337,7 @@ def store():
   os.system('clear')
   print("Name: %s" % PlayerIG.name)
   print("Gold: %d" % PlayerIG.gold)
-  print("Welcome to the store, would you like to buy potions?")
+  print("Welcome to the store")
   print("1.) Buy")
   print("2.) Leave")
   option = input(" ")
@@ -334,13 +345,14 @@ def store():
     os.system('clear')
     print("Name: %s" % PlayerIG.name)
     print("Gold: %d" % PlayerIG.gold)
-    print("1.) Buy potion:5 gold")
-    print("2.) Buy Steel Sword:25 gold")
-    print("3.) Buy Diamond Sword:55 gold")
-    print("4.) Buy Steel Armour: 50 gold")
-    print("5.) Buy Diamond Armour: 110 gold")
-    print("6.) Buy Excalibur: 550 gold")
-    print("7.) Back")
+    print("1.) Buy Potion:5 gold")
+    print("2.) Buy 5 Potions:15 gold")
+    print("3.) Buy Steel Sword:25 gold")
+    print("4.) Buy Diamond Sword:55 gold")
+    print("5.) Buy Steel Armour: 50 gold")
+    print("6.) Buy Diamond Armour: 110 gold")
+    print("7.) Buy Excalibur: 550 gold")
+    print("8.) Back")
     option2 = input(" ")
     if option2 == "1":
       os.system('clear')
@@ -354,7 +366,19 @@ def store():
         PlayerIG.pots += 1
         option = input(" ")
         store()
-    elif option2 == "2":
+    elif option2=="2":
+      os.system('clear')
+      if PlayerIG.gold < 15:
+        print("You don't have enough gold")
+        option = input(" ")
+        store()
+      else:
+        print("You bought 5 potions!")
+        PlayerIG.gold -= 15
+        PlayerIG.pots += 5
+        option = input(" ")
+        store()
+    elif option2 == "3":
       os.system('clear')
       if PlayerIG.gold < 25:
         print("You don't have enough gold")
@@ -366,7 +390,7 @@ def store():
         PlayerIG.inventory += ["Steel Sword"]
         option = input(" ")
         store()
-    elif option2 == "3":
+    elif option2 == "4":
       os.system('clear')
       if PlayerIG.gold < 55:
         print("You don't have enough gold")
@@ -378,7 +402,7 @@ def store():
         PlayerIG.inventory += ["Diamond Sword"]
         option = input(" ")
         store()
-    elif option2 == "4":
+    elif option2 == "5":
       os.system('clear')
       if PlayerIG.gold < 50:
         print("You don't have enough gold")
@@ -390,7 +414,7 @@ def store():
         PlayerIG.inventory += ["Steel Armour"]
         option = input(" ")
         store()
-    elif option2 == "5":
+    elif option2 == "6":
       os.system('clear')
       if PlayerIG.gold < 110:
         print("You don't have enough gold")
@@ -402,7 +426,7 @@ def store():
         PlayerIG.inventory += ["Diamond Armour"]
         option = input(" ")
         store()
-    elif option2 == "6":
+    elif option2 == "7":
       os.system('clear')
       if PlayerIG.gold < 550:
         print("You don't have enough gold")
@@ -414,8 +438,10 @@ def store():
         PlayerIG.inventory += ["Excalibur"]
         option = input(" ")
         store()
+    else:
+      start1()
   else:
-    start1()
+    store()
 
 
 def inventory():
